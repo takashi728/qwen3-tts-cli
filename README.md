@@ -1,5 +1,9 @@
 # qwen3-tts-cli
 
+[![GitHub stars](https://img.shields.io/github/stars/takashi728/qwen3-tts-cli?style=social)](https://github.com/takashi728/qwen3-tts-cli/stargazers)
+[![license](https://img.shields.io/github/license/takashi728/qwen3-tts-cli)](./LICENSE)
+[![Python](https://img.shields.io/badge/python-≥3.10-blue)](https://www.python.org/)
+
 Command-line interface for [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) — voice clone, voice design, and custom voice generation.
 
 ## Setup
@@ -117,3 +121,15 @@ You can also pass a full HuggingFace model ID or a local directory path to `--mo
 ## Supported Languages
 
 Chinese, English, Japanese, Korean, German, French, Russian, Portuguese, Spanish, Italian (plus `Auto` for auto-detection).
+
+## Roadmap
+
+| Feature | Status | Notes |
+|---|---|---|
+| NVIDIA CUDA (sdpa) | ✅ shipped | Default backend, tested on RTX 5090 |
+| FlashAttention 2 | ✅ shipped | Optional, `--attn flash_attention_2` |
+| Voice Design + Clone pipeline | ✅ shipped | `design-clone` command |
+| Prompt caching | ✅ shipped | `--prompt-cache` / `--reuse-prompt` |
+| Agent skill file | ✅ shipped | `SKILL.md` for Pi / OpenCode / Claude Code |
+| **macOS MPS support** | 🔲 planned | `--device mps` for Apple Silicon. Needs `torch.mps` validation, may require bf16→fp16 fallback. |
+| **vLLM engine** | 🔲 planned | `--engine vllm` for batched high-throughput inference via [vLLM-Omni](https://github.com/vllm-project/vllm-omni). Faster multi-line generation, lower latency under load. |

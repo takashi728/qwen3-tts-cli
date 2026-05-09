@@ -2,26 +2,47 @@
 
 Command-line interface for [Qwen3-TTS](https://github.com/QwenLM/Qwen3-TTS) — voice clone, voice design, and custom voice generation.
 
-## Install
+## Setup
+
+### 🤖 Automatic (recommended)
+
+Let an agent set it up for you. Point your agent at this repo and say:
+
+> *"Clone qwen3-tts-cli, read SKILL.md, then install it and generate a test sentence."*
+
+Agents that handle this well:
+
+| Agent | Why |
+|---|---|
+| [**Pi**](https://github.com/earendil-works/pi) | Open-source. Reads SKILL.md, manages venvs, editable installs, full CLI awareness. |
+| [**OpenCode**](https://github.com/opencode-ai/opencode) | Open-source. Native tool-calling, zero-config Python/venv workflows. |
+
+Both are fully open-source — no paywalls, no API keys needed for local use.
+
+### 🔧 Manual
 
 ```bash
-cd ~/Projects/qwen3-tts-cli
+git clone https://github.com/takashi728/qwen3-tts-cli.git
+cd qwen3-tts-cli
+
+# With uv (fast)
+uv venv --python 3.12 && source .venv/bin/activate
 uv pip install -e .
-```
 
-Or with pip:
-
-```bash
+# Or with pip
+python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-Requirements: Python ≥ 3.10, CUDA GPU with ≥ 8GB VRAM, flash-attn (recommended).
+Requirements: **Python ≥ 3.10**, **NVIDIA GPU** with ≥ 8GB VRAM, **CUDA** toolkit.
 
-Install flash-attn for faster inference:
+FlashAttention 2 reduces VRAM usage ~20% (optional):
 
 ```bash
 MAX_JOBS=4 pip install -U flash-attn --no-build-isolation
 ```
+
+If flash-attn fails to build (e.g. missing CUDA_HOME), the CLI falls back to PyTorch SDPA — works fine on 32GB cards.
 
 ## Quickstart
 

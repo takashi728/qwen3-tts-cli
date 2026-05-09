@@ -38,15 +38,27 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-Requirements: **Python ≥ 3.10**, **NVIDIA GPU** with ≥ 8 GB VRAM, **CUDA** toolkit.  
-
 FlashAttention 2 reduces VRAM usage ~20% (optional):
 
 ```bash
 MAX_JOBS=4 pip install -U flash-attn --no-build-isolation
 ```
 
-If flash-attn fails to build (e.g. missing CUDA_HOME), the CLI falls back to PyTorch SDPA. Real-world VRAM with SDPA: 0.6B models peak at ~3–6 GiB, 1.7B models at ~4–8 GiB. Any GPU with ≥ 12 GB is comfortable.
+If flash-attn fails to build (e.g. missing CUDA_HOME), the CLI falls back to PyTorch SDPA.
+
+### 💻 Hardware Requirements
+
+Python ≥ 3.10, NVIDIA GPU, CUDA toolkit. Measured peak VRAM with SDPA backend (bf16):
+
+| Model | Shortcut | Peak VRAM | Min GPU |
+|---|---|---|---|
+| CustomVoice 0.6B | `custom-0.6b` | ~2.8 GiB | 4 GB |
+| CustomVoice 1.7B | `custom-1.7b` | ~3.8 GiB | 6 GB |
+| VoiceDesign 1.7B | `design` | ~3.8 GiB | 6 GB |
+| Base 0.6B (clone) | `base-0.6b` | ~5.6 GiB | 8 GB |
+| Base 1.7B (clone) | `base-1.7b` | ~7.5 GiB | 10 GB |
+
+> FlashAttention 2 shaves ~15–20% off these numbers. Tokenizer-only encode/decode uses under 1 GiB.
 
 ## Quickstart
 

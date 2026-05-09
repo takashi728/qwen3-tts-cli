@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qwen3-tts-cli"
+version = "0.1.0"
+description = "CLI tool for Qwen3-TTS: voice clone, voice design, and custom voice generation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "CLI builder" }]
+
+dependencies = [
+    "qwen-tts>=0.1.1",
+]
+
+[project.scripts]
+qwen3-tts = "qwen3_tts_cli.main:main"
+
+[tool.setuptools]
+packages = { find = { where = ["."], include = ["qwen3_tts_cli*"] } }

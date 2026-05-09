@@ -26,7 +26,7 @@ The CLI must be installed in a venv at `~/Projects/qwen3-tts-cli/.venv`. Activat
 source ~/Projects/qwen3-tts-cli/.venv/bin/activate
 ```
 
-Hardware: Single RTX 5090 (32GB VRAM). All models fit comfortably.
+Hardware: NVIDIA GPU with ≥ 8 GB VRAM. Real-world peak with SDPA: 0.6B models ~3–6 GiB, 1.7B models ~4–8 GiB. 12 GB card is comfortable for all models.
 
 ## Quickstart — Available Commands
 
@@ -144,4 +144,4 @@ Always writes to a `.wav` file (24kHz, mono, 16-bit). Default paths: `output_spe
 
 - **flash-attn warning**: Safe to ignore. Falls back to SDPA. Optional `MAX_JOBS=4 pip install flash-attn --no-build-isolation` for ~20% less VRAM.
 - **SoX not found**: `brew install sox`
-- **Out of VRAM**: Use 0.6B models (`custom-0.6b`, `base-0.6b`) or reduce `--max-tokens`.
+- **Out of VRAM**: Use 0.6B models (`custom-0.6b`, `base-0.6b`). 0.6B-CustomVoice peaks at ~2.8 GiB — fits even 6 GB cards.

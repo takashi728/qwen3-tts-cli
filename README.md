@@ -38,7 +38,7 @@ python3 -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
-Requirements: **Python ≥ 3.10**, **NVIDIA GPU** with ≥ 8GB VRAM, **CUDA** toolkit.
+Requirements: **Python ≥ 3.10**, **NVIDIA GPU** with ≥ 8 GB VRAM, **CUDA** toolkit.  
 
 FlashAttention 2 reduces VRAM usage ~20% (optional):
 
@@ -46,7 +46,7 @@ FlashAttention 2 reduces VRAM usage ~20% (optional):
 MAX_JOBS=4 pip install -U flash-attn --no-build-isolation
 ```
 
-If flash-attn fails to build (e.g. missing CUDA_HOME), the CLI falls back to PyTorch SDPA — works fine on 32GB cards.
+If flash-attn fails to build (e.g. missing CUDA_HOME), the CLI falls back to PyTorch SDPA. Real-world VRAM with SDPA: 0.6B models peak at ~3–6 GiB, 1.7B models at ~4–8 GiB. Any GPU with ≥ 12 GB is comfortable.
 
 ## Quickstart
 
